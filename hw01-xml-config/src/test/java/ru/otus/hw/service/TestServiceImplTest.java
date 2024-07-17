@@ -3,6 +3,7 @@ package ru.otus.hw.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.otus.hw.dao.QuestionDao;
@@ -12,6 +13,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class TestServiceImplTest {
 
+    @InjectMocks
     private TestServiceImpl testServiceImpl;
 
     @Mock
@@ -19,11 +21,6 @@ class TestServiceImplTest {
 
     @Mock
     private IOService ioService;
-
-    @BeforeEach
-    public void init() {
-        testServiceImpl = new TestServiceImpl(questionDao, ioService);
-    }
 
     @Test
     void testExecuteTest() {
