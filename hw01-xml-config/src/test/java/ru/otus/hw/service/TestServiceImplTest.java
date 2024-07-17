@@ -1,12 +1,15 @@
 package ru.otus.hw.service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.otus.hw.dao.QuestionDao;
+import ru.otus.hw.domain.Question;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -24,7 +27,13 @@ class TestServiceImplTest {
 
     @Test
     void testExecuteTest() {
+        List<Question> emptyListOfQuestions = new ArrayList<>();
+        doReturn(emptyListOfQuestions).when(questionDao).findAll();
+
+        testServiceImpl.executeTest();
+
         verify(questionDao, atMostOnce()).findAll();
-        verifyNoInteractions(ioService);
+        verify(ioService, atMostOnce()).printLine(anyString());
+        verify(ioService, atMostOnce()).printFormattedLine(anyString());
     }
 }
