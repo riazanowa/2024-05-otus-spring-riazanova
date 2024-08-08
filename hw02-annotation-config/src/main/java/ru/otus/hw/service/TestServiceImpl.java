@@ -30,8 +30,9 @@ public class TestServiceImpl implements TestService {
             for (int j = 0; j < 3; j++) {
                 ioService.printFormattedLine("%d. %s%n", j + 1, answers.get(j).text());
             }
-            int answer = ioService.readIntForRangeWithPrompt(1, 3, "Write a number of the answer.", "Entered number is out of range.");
-            var isAnswerValid = answers.get(answer).isCorrect();
+            int answer = ioService.readIntForRangeWithPrompt(1, 3, "Write a number of the answer.",
+                    "Entered number is out of range.");
+            var isAnswerValid = answers.get(answer - 1).isCorrect();
             testResult.applyAnswer(questions.get(i), isAnswerValid);
         }
         return testResult;
