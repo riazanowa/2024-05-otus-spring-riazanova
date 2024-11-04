@@ -1,10 +1,9 @@
 package ru.otus.hw.dao;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.otus.hw.config.TestFileNameProvider;
 import ru.otus.hw.domain.Answer;
 import ru.otus.hw.domain.Question;
@@ -14,17 +13,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest(classes = {CsvQuestionDao.class})
 public class CsvQuestionDaoTest {
 
     public static final String FILE_NAME = "questions.csv";
 
     public static final String WRONG_FILE_NAME = "non-existent.csv";
 
-    @InjectMocks
+    @Autowired
     private CsvQuestionDao dao;
 
-    @Mock
+    @MockBean
     private TestFileNameProvider fileNameProvider;
 
     @Test
